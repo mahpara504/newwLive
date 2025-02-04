@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .location {
+        width: 400px;
+        height: 400px;
+        border: 2px solid black;
+      }
+      body {
+        padding: 0;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        height: 50vh;
+        background-color: aliceblue;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- <button id="getLocation">view location</button>
+    <div class="location">
+
+    </div> -->
+
+    <button id="geo-btn">get location</button>
+    <p id="show-details">show deatials</p>
+    <!-- <script>
+    function gotLocation(position){
+console.log(position)
+// document.write(position)
+    }
+    function failtoGet(){
+console.log('there was an error')
+}
+    // alert("jnjdjf")
+let btn =  document.getElementById('getLocation');
+btn.addEventListener('click', function banaya () {
+let result = navigator.geolocation.getCurrentPosition(gotLocation , failtoGet)
+
+
+})
+</script> -->
+    <!-- //////////////////////////////////////// -->
+    <script>
+      console.log(navigator.geolocation.getCurrentPosition); // yh ek ayesa function hain jo do callbacks mangta hain
+
+      let btn = document.getElementById("geo-btn");
+      let showData = document.getElementById("show-details");
+
+      btn.addEventListener("click", function () {
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(
+            (position) => {
+              // console.log( psition.coords.latitude)
+              showData.textContent = `latitude is ${position.coords.latitude  } and longitude is ${position.coords.longitude  } `
+              
+            },
+            (error) => {
+              console.log(error.message);
+            }
+          );
+        }
+      });
+    </script>
+  </body>
+</html>

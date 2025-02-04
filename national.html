@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>National Parks Map</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        #map {
+            height: 500px;
+            width: 80%;
+            margin: 20px auto;
+            border-radius: 10px;
+            border: 2px solid #4CAF50;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>National Parks Location</h2>
+    <div id="map"></div>
+
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+        // Initialize the map
+        var map = L.map('map').setView([39.8283, -98.5795], 4); // Center of the USA
+
+        // Add OpenStreetMap tiles
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; OpenStreetMap contributors'
+        }).addTo(map);
+
+        // National Parks Data
+        var parks = [
+            { name: "Yellowstone National Park", location: [44.4280, -110.5885] },
+            { name: "Yosemite National Park", location: [37.8651, -119.5383] },
+            { name: "Grand Canyon National Park", location: [36.1069, -112.1129] },
+            { name: "Great Smoky Mountains", location: [35.6118, -83.4895] },
+            { name: "Rocky Mountain National Park", location: [40.3428, -105.6836] }
+        ];
+
+        // Add markers to the map
+        parks.forEach(park => {
+            L.marker(park.location).addTo(map)
+                .bindPopup(`<b>${park.name}</b>`)
+                .openPopup();
+        });
+    </script>
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3617.7979758931415!2d67.04237307460507!3d24.938951277878065!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3eb33f3daae54d55%3A0x5dae2a3a4b71f12a!2sAptech%20Learning%20North%20Nazimabad%20II%20Center!5e0!3m2!1sen!2s!4v1738668137281!5m2!1sen!2s" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+</body>
+</html>
